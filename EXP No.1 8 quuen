@@ -1,0 +1,26 @@
+n=int(input())
+A = [[0]*n for _ in range(n)]
+def nopee(i,j):
+    for b in range(0,n):
+        if A[i][b]=='Q' or A[b][j]=='Q':
+            return False
+    for b in range(0,n):
+        for c in range(0,n):
+            if (b+c==i+j) or (b-c==i-j):
+                if A[b][c]=='Q':
+                    return False
+    return True               
+def queen(N):
+    if N==0:
+        return 'Q'
+    for i in range(0,n):
+        for j in range(0,n):
+            if (nopee(i,j)) and (A[i][j]!='Q'):
+                A[i][j] = 'Q'
+                if queen(N-1)=='Q':
+                    return 'Q'
+                A[i][j] = 0
+    return False
+queen(n)
+for i in A:
+    print (i)
